@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+
+
+{% block navigation %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Welcome {{ request.user }}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/home/">Home
+              
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/my_profile/">My Profile</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/seller/add_product/">Add Product <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">View Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+{% endblock %}
+
+{% block mainbody %}
+
+	<div class="container jumbotron">
+		
+		<h1>Add Product here!</h1>
+    <div class="row">
+      <div class="col-md-4">
+        
+      </div>
+      <div class="col-md-4">
+        
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" name="pname" placeholder="Product Name" class="form-control">
+              </div>
+              <div class="form-group">
+              <input type="text" name="price" placeholder="Product Price" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="number" name="qty" placeholder="Product Stock" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="text" name="desc" placeholder="Product Description" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="file" name="pic" placeholder="Product Image" class="form-control">
+            </div>
+              <div class="form-group">
+                <select name="category" class="form-control">
+                  {% for i in cats %}
+                  <option value="{{i.id}}">{{ i.catname}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Add" class="form-control btn btn-primary">
+              </div>
+              <div>
+                
+              </div>
+            
+            
+          </form>
+          
+        </div>
+      </div>
+      <div class="col-md-4">
+        
+      </div>
+
+
+    </div>
+	</div>
+
+
+{% endblock %}
+

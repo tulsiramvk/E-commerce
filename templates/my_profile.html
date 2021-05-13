@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+
+{% block navigation %}
+{%if data1.role == 'seller' %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Welcome {{ request.user }}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="/seller/home/">Home
+              
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/seller/my_profile/">My Profile</a><span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/seller/add_product/">Add Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">View Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% endif %}
+{%if data1.role == 'buyer' %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Welcome {{ request.user }}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="/buyer/home/">Home
+              
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/buyer/my_profile/">My Profile</a><span class="sr-only">(current)</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">My Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/buyer/cartdetail/">Cart<sup>{{ count }}</sup></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+{% endif %}
+{% endblock %}
+
+{% block mainbody %}
+  
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 jumbotron">
+        <h1>My Profile</h1>
+        <p>NOTE:You can only change Firstname,Lastname and Profile Image.</p>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div >
+            <img style="border-radius: 50%;" src="{{data1.profile_pic.url}}" width="150px" height="100px">
+          </div>
+          <div class="form-group">
+            <input type="file" name="profile_pic" placeholder="Profile image"  value="">
+          </div>
+          <div class="form-group">
+           Username: <input type="text" name="username" value="{{data.username}}" readonly class="form-control">
+          </div>
+          <div class="form-group">
+           Mobile: <input type="text" name="mobile" value="{{data1.mobile}}" readonly class="form-control">
+          </div>
+          <div class="form-group">
+           E-mail: <input type="text" name="username" value="{{data.email}}" readonly class="form-control">
+          </div>
+          <div class="form-group">
+           First Name: <input type="text" name="fname" value="{{data.first_name}}"  class="form-control">
+          </div>
+          <div class="form-group">
+           Last Name: <input type="text" name="lname" value="{{data.last_name}}"  class="form-control">
+          </div>
+          <div class="form-group">
+           Role: <input type="text" name="role" value="{{data1.role}}"  readonly class="form-control">
+          </div>
+          {%if data1.role == 'buyer' %}
+           <div class="form-group">
+          Address:<input type="address" name="add" value="{{data1.address}}" class="form-control">
+          </div>
+          {% endif %}
+          <div class="form-group">
+            <input type="submit" name="" value="Update Profile" class="form-control btn btn-secondary">
+          </div>
+         
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

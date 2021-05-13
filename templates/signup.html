@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">	
+</head>
+<body>
+	<div class="container jumbotron">
+		<div class="row">
+			<div class="col-md-4">
+				
+			</div>
+			<div class="col-md-4">
+				<h1>Signup Here!</h1>
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group">
+						<input type="text" name="fname" class="form-control" placeholder="First Name">
+					</div>
+					<div class="form-group">
+						<input type="text" name="lname" class="form-control" placeholder="Last Name">
+					</div>
+					<div class="form-group">
+						<input type="number" name="mobile" class="form-control" placeholder="Mobile">
+					</div>
+					<div class="form-group">
+						<input type="email" name="email" class="form-control" placeholder="Email">
+					</div>
+					<div class="form-group">
+						<input type="text" name="username" class="form-control" placeholder="UserName">
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<select class="form-control" name="role">
+							<option value="buyer">Buyer</option>
+							<option value="seller">Seller</option>
+						</select>
+					</div>
+					<div class="form-group">
+              			<input type="file" name="profile_pic" placeholder="Profile Image" class="form-control">
+            		</div>
+					<div class="form-group ">
+						<input type="submit"  value="Signup" class="form-control btn btn-primary">
+					</div>
+					
+				</form>
+				
+				
+			</div>
+			<div class="col-md-4">
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
